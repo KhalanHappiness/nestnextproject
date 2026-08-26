@@ -16,4 +16,14 @@ model Profile{
   id           String @id @default(uuid())
   name         String
   description  String
+  posts        Post[]
+}
+
+model Post{
+  id  String @id @default(uuid())
+  title String
+  content String
+  profileId String 
+  profile   Profile @relation(fields: [profileId], references: [id])
+
 }
