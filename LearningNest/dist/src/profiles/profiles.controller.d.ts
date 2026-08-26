@@ -6,24 +6,24 @@ export declare class ProfilesController {
     private readonly profilesService;
     constructor(profilesService: ProfilesService);
     findAll(): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }[]>;
     findOne(id: UUID): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
     create(createProfileDto: CreateProfileDto): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
     update(id: UUID, updateProfileDto: UpdateProfileDto): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
     remove(id: UUID): Promise<void>;
 }
