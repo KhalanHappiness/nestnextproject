@@ -23,7 +23,11 @@ let PostsService = class PostsService {
         });
     }
     async findAll() {
-        return await this.prisma.post.findMany();
+        return await this.prisma.post.findMany({
+            include: {
+                profile: true
+            }
+        });
     }
     async findOne(id) {
         return await this.prisma.post.findUnique({

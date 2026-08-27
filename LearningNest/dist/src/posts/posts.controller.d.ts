@@ -10,12 +10,18 @@ export declare class PostsController {
         content: string;
         profileId: string;
     }>;
-    findAll(): Promise<{
+    findAll(): Promise<({
+        profile: {
+            name: string;
+            description: string;
+            id: string;
+        };
+    } & {
         id: string;
         title: string;
         content: string;
         profileId: string;
-    }[]>;
+    })[]>;
     findOne(id: string): Promise<{
         id: string;
         title: string;
