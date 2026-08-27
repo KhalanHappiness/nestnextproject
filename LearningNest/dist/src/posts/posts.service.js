@@ -17,20 +17,29 @@ let PostsService = class PostsService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(createPostDto) {
-        return 'This action adds a new post';
+    async create(createPostDto) {
+        return await this.prisma.post.create({
+            data: createPostDto
+        });
     }
-    findAll() {
-        return `This action returns all posts`;
+    async findAll() {
+        return await this.prisma.post.findMany();
     }
-    findOne(id) {
-        return `This action returns a #${id} post`;
+    async findOne(id) {
+        return await this.prisma.post.findUnique({
+            where: { id }
+        });
     }
-    update(id, updatePostDto) {
-        return `This action updates a #${id} post`;
+    async update(id, updatePostDto) {
+        return await this.prisma.post.update({
+            where: { id },
+            data: updatePostDto
+        });
     }
-    remove(id) {
-        return `This action removes a #${id} post`;
+    async remove(id) {
+        return await this.prisma.post.delete({
+            where: { id }
+        });
     }
 };
 exports.PostsService = PostsService;

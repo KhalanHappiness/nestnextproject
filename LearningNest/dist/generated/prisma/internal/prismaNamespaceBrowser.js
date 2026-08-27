@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryMode = exports.SortOrder = exports.ProfileScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.QueryMode = exports.SortOrder = exports.PostScalarFieldEnum = exports.ProfileScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -45,7 +45,8 @@ exports.DbNull = runtime.DbNull;
 exports.JsonNull = runtime.JsonNull;
 exports.AnyNull = runtime.AnyNull;
 exports.ModelName = {
-    Profile: 'Profile'
+    Profile: 'Profile',
+    Post: 'Post'
 };
 exports.TransactionIsolationLevel = runtime.makeStrictEnum({
     ReadUncommitted: 'ReadUncommitted',
@@ -57,6 +58,12 @@ exports.ProfileScalarFieldEnum = {
     id: 'id',
     name: 'name',
     description: 'description'
+};
+exports.PostScalarFieldEnum = {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    profileId: 'profileId'
 };
 exports.SortOrder = {
     asc: 'asc',

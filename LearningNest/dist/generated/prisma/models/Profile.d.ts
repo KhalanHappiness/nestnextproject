@@ -80,11 +80,13 @@ export type ProfileWhereInput = {
     id?: Prisma.StringFilter<"Profile"> | string;
     name?: Prisma.StringFilter<"Profile"> | string;
     description?: Prisma.StringFilter<"Profile"> | string;
+    posts?: Prisma.PostListRelationFilter;
 };
 export type ProfileOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
+    posts?: Prisma.PostOrderByRelationAggregateInput;
 };
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -93,6 +95,7 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
     NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[];
     name?: Prisma.StringFilter<"Profile"> | string;
     description?: Prisma.StringFilter<"Profile"> | string;
+    posts?: Prisma.PostListRelationFilter;
 }, "id">;
 export type ProfileOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -114,21 +117,25 @@ export type ProfileCreateInput = {
     id?: string;
     name: string;
     description: string;
+    posts?: Prisma.PostCreateNestedManyWithoutProfileInput;
 };
 export type ProfileUncheckedCreateInput = {
     id?: string;
     name: string;
     description: string;
+    posts?: Prisma.PostUncheckedCreateNestedManyWithoutProfileInput;
 };
 export type ProfileUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
+    posts?: Prisma.PostUpdateManyWithoutProfileNestedInput;
 };
 export type ProfileUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
     description?: Prisma.StringFieldUpdateOperationsInput | string;
+    posts?: Prisma.PostUncheckedUpdateManyWithoutProfileNestedInput;
 };
 export type ProfileCreateManyInput = {
     id?: string;
@@ -160,13 +167,76 @@ export type ProfileMinOrderByAggregateInput = {
     name?: Prisma.SortOrder;
     description?: Prisma.SortOrder;
 };
+export type ProfileScalarRelationFilter = {
+    is?: Prisma.ProfileWhereInput;
+    isNot?: Prisma.ProfileWhereInput;
+};
 export type StringFieldUpdateOperationsInput = {
     set?: string;
+};
+export type ProfileCreateNestedOneWithoutPostsInput = {
+    create?: Prisma.XOR<Prisma.ProfileCreateWithoutPostsInput, Prisma.ProfileUncheckedCreateWithoutPostsInput>;
+    connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutPostsInput;
+    connect?: Prisma.ProfileWhereUniqueInput;
+};
+export type ProfileUpdateOneRequiredWithoutPostsNestedInput = {
+    create?: Prisma.XOR<Prisma.ProfileCreateWithoutPostsInput, Prisma.ProfileUncheckedCreateWithoutPostsInput>;
+    connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutPostsInput;
+    upsert?: Prisma.ProfileUpsertWithoutPostsInput;
+    connect?: Prisma.ProfileWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutPostsInput, Prisma.ProfileUpdateWithoutPostsInput>, Prisma.ProfileUncheckedUpdateWithoutPostsInput>;
+};
+export type ProfileCreateWithoutPostsInput = {
+    id?: string;
+    name: string;
+    description: string;
+};
+export type ProfileUncheckedCreateWithoutPostsInput = {
+    id?: string;
+    name: string;
+    description: string;
+};
+export type ProfileCreateOrConnectWithoutPostsInput = {
+    where: Prisma.ProfileWhereUniqueInput;
+    create: Prisma.XOR<Prisma.ProfileCreateWithoutPostsInput, Prisma.ProfileUncheckedCreateWithoutPostsInput>;
+};
+export type ProfileUpsertWithoutPostsInput = {
+    update: Prisma.XOR<Prisma.ProfileUpdateWithoutPostsInput, Prisma.ProfileUncheckedUpdateWithoutPostsInput>;
+    create: Prisma.XOR<Prisma.ProfileCreateWithoutPostsInput, Prisma.ProfileUncheckedCreateWithoutPostsInput>;
+    where?: Prisma.ProfileWhereInput;
+};
+export type ProfileUpdateToOneWithWhereWithoutPostsInput = {
+    where?: Prisma.ProfileWhereInput;
+    data: Prisma.XOR<Prisma.ProfileUpdateWithoutPostsInput, Prisma.ProfileUncheckedUpdateWithoutPostsInput>;
+};
+export type ProfileUpdateWithoutPostsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type ProfileUncheckedUpdateWithoutPostsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type ProfileCountOutputType = {
+    posts: number;
+};
+export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    posts?: boolean | ProfileCountOutputTypeCountPostsArgs;
+};
+export type ProfileCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    select?: Prisma.ProfileCountOutputTypeSelect<ExtArgs> | null;
+};
+export type ProfileCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.PostWhereInput;
 };
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
     description?: boolean;
+    posts?: boolean | Prisma.Profile$postsArgs<ExtArgs>;
+    _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["profile"]>;
 export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -184,9 +254,17 @@ export type ProfileSelectScalar = {
     description?: boolean;
 };
 export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["profile"]>;
+export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    posts?: boolean | Prisma.Profile$postsArgs<ExtArgs>;
+    _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type ProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
+export type ProfileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
 export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "Profile";
-    objects: {};
+    objects: {
+        posts: Prisma.$PostPayload<ExtArgs>[];
+    };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
         name: string;
@@ -243,6 +321,7 @@ export interface ProfileDelegate<ExtArgs extends runtime.Types.Extensions.Intern
 }
 export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
+    posts<T extends Prisma.Profile$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): runtime.Types.Utils.JsPromise<T | TResult>;
     finally(onfinally?: (() => void) | undefined | null): runtime.Types.Utils.JsPromise<T>;
@@ -255,16 +334,19 @@ export interface ProfileFieldRefs {
 export type ProfileFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where: Prisma.ProfileWhereUniqueInput;
 };
 export type ProfileFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where: Prisma.ProfileWhereUniqueInput;
 };
 export type ProfileFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where?: Prisma.ProfileWhereInput;
     orderBy?: Prisma.ProfileOrderByWithRelationInput | Prisma.ProfileOrderByWithRelationInput[];
     cursor?: Prisma.ProfileWhereUniqueInput;
@@ -275,6 +357,7 @@ export type ProfileFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type ProfileFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where?: Prisma.ProfileWhereInput;
     orderBy?: Prisma.ProfileOrderByWithRelationInput | Prisma.ProfileOrderByWithRelationInput[];
     cursor?: Prisma.ProfileWhereUniqueInput;
@@ -285,6 +368,7 @@ export type ProfileFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
 export type ProfileFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where?: Prisma.ProfileWhereInput;
     orderBy?: Prisma.ProfileOrderByWithRelationInput | Prisma.ProfileOrderByWithRelationInput[];
     cursor?: Prisma.ProfileWhereUniqueInput;
@@ -295,6 +379,7 @@ export type ProfileFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ProfileCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     data: Prisma.XOR<Prisma.ProfileCreateInput, Prisma.ProfileUncheckedCreateInput>;
 };
 export type ProfileCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -310,6 +395,7 @@ export type ProfileCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
 export type ProfileUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     data: Prisma.XOR<Prisma.ProfileUpdateInput, Prisma.ProfileUncheckedUpdateInput>;
     where: Prisma.ProfileWhereUniqueInput;
 };
@@ -328,6 +414,7 @@ export type ProfileUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
 export type ProfileUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where: Prisma.ProfileWhereUniqueInput;
     create: Prisma.XOR<Prisma.ProfileCreateInput, Prisma.ProfileUncheckedCreateInput>;
     update: Prisma.XOR<Prisma.ProfileUpdateInput, Prisma.ProfileUncheckedUpdateInput>;
@@ -335,13 +422,26 @@ export type ProfileUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type ProfileDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
     where: Prisma.ProfileWhereUniqueInput;
 };
 export type ProfileDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     where?: Prisma.ProfileWhereInput;
     limit?: number;
 };
+export type Profile$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    select?: Prisma.PostSelect<ExtArgs> | null;
+    omit?: Prisma.PostOmit<ExtArgs> | null;
+    include?: Prisma.PostInclude<ExtArgs> | null;
+    where?: Prisma.PostWhereInput;
+    orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[];
+    cursor?: Prisma.PostWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[];
+};
 export type ProfileDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     select?: Prisma.ProfileSelect<ExtArgs> | null;
     omit?: Prisma.ProfileOmit<ExtArgs> | null;
+    include?: Prisma.ProfileInclude<ExtArgs> | null;
 };

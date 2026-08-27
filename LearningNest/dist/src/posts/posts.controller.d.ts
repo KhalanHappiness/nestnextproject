@@ -4,9 +4,34 @@ import { UpdatePostDto } from './dto/update-post.dto';
 export declare class PostsController {
     private readonly postsService;
     constructor(postsService: PostsService);
-    create(createPostDto: CreatePostDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updatePostDto: UpdatePostDto): string;
-    remove(id: string): string;
+    create(createPostDto: CreatePostDto): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }>;
+    findAll(): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }[]>;
+    findOne(id: string): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    } | null>;
+    update(id: string, updatePostDto: UpdatePostDto): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }>;
+    remove(id: string): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }>;
 }

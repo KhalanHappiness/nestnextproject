@@ -33,5 +33,8 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get profile(): Prisma.ProfileDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    get post(): Prisma.PostDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;

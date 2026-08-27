@@ -161,6 +161,7 @@ export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
     readonly Profile: "Profile";
+    readonly Post: "Post";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -173,7 +174,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "profile";
+        modelProps: "profile" | "post";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -251,6 +252,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        Post: {
+            payload: Prisma.$PostPayload<ExtArgs>;
+            fields: Prisma.PostFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.PostFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.PostFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+                };
+                findFirst: {
+                    args: Prisma.PostFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.PostFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+                };
+                findMany: {
+                    args: Prisma.PostFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>[];
+                };
+                create: {
+                    args: Prisma.PostCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+                };
+                createMany: {
+                    args: Prisma.PostCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.PostCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>[];
+                };
+                delete: {
+                    args: Prisma.PostDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+                };
+                update: {
+                    args: Prisma.PostUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.PostDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.PostUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.PostUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>[];
+                };
+                upsert: {
+                    args: Prisma.PostUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PostPayload>;
+                };
+                aggregate: {
+                    args: Prisma.PostAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregatePost>;
+                };
+                groupBy: {
+                    args: Prisma.PostGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PostGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.PostCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PostCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -288,6 +363,13 @@ export declare const ProfileScalarFieldEnum: {
     readonly description: "description";
 };
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum];
+export declare const PostScalarFieldEnum: {
+    readonly id: "id";
+    readonly title: "title";
+    readonly content: "content";
+    readonly profileId: "profileId";
+};
+export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -331,6 +413,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter;
 export type GlobalOmitConfig = {
     profile?: Prisma.ProfileOmit;
+    post?: Prisma.PostOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

@@ -4,9 +4,34 @@ import { PrismaService } from "../prisma/prisma/prisma.service";
 export declare class PostsService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(createPostDto: CreatePostDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updatePostDto: UpdatePostDto): string;
-    remove(id: number): string;
+    create(createPostDto: CreatePostDto): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }>;
+    findAll(): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }[]>;
+    findOne(id: string): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    } | null>;
+    update(id: string, updatePostDto: UpdatePostDto): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }>;
+    remove(id: string): Promise<{
+        id: string;
+        title: string;
+        content: string;
+        profileId: string;
+    }>;
 }
