@@ -5,28 +5,28 @@ export declare class ProfilesService {
     private prisma;
     constructor(prisma: PrismaService);
     findAll(): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }[]>;
     findOne(id: string): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
     create(createProfileDto: CreateProfileDto): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
     update(id: string, updateProfileDto: UpdateProfileDto): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
     remove(id: string): Promise<{
-        id: string;
         name: string;
         description: string;
+        id: string;
     }>;
 }

@@ -5,33 +5,33 @@ export declare class PostsService {
     private prisma;
     constructor(prisma: PrismaService);
     create(createPostDto: CreatePostDto): Promise<{
-        id: string;
         title: string;
         content: string;
         profileId: string;
+        id: string;
     }>;
     findAll(): Promise<{
-        id: string;
         title: string;
         content: string;
         profileId: string;
+        id: string;
     }[]>;
     findOne(id: string): Promise<{
-        id: string;
         title: string;
         content: string;
         profileId: string;
+        id: string;
     } | null>;
     update(id: string, updatePostDto: UpdatePostDto): Promise<{
-        id: string;
         title: string;
         content: string;
         profileId: string;
+        id: string;
     }>;
     remove(id: string): Promise<{
-        id: string;
         title: string;
         content: string;
         profileId: string;
+        id: string;
     }>;
 }
